@@ -27,6 +27,27 @@ License: GPLv2
 */  
 session_start();
 require_once plugin_dir_path(__FILE__) . 'includes/widget-functions.php';
+require 'plugin-update-checker-4.10/plugin-update-checker.php';
+
+add_action( 'admin_init', 'ehtl_update_checker_setting' );  
+
+function ehtl_update_checker_setting() { 
+	
+	register_setting( 'vouchertec-ehtl', 'serial' ); 
+
+        if ( ! is_admin() || ! class_exists( 'Puc_v4_Factory' ) ) {  
+            return;  
+        }  
+
+        $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker( 
+            'https://github.com/TravelTec/vouchertec-ehtl',  
+            __FILE__,  
+            'ehtl'  
+        );  
+	
+        $myUpdateChecker->setBranch('main'); 
+
+    }
 
 add_action('admin_menu', 'addPluginAdminMenuEhtl');  
 function addPluginAdminMenuEhtl() {  

@@ -315,12 +315,13 @@ function clear_value(){
 }
 
 function pesquisar_destinos_ehtl(){ 
+	var contador_exibicao = 0;
 
     var destino = jQuery("#field_name_ehtl").val();
 
     var contador = 0;
-    if (destino.length >= 3) {  
-        jQuery('.dados').attr('style', 'background-color:#fff;min-height: 25px;width: 24%;position: absolute;margin-top: 9%;z-index: 9;');  
+    if (destino.length >= 3 && contador_exibicao == 0) {  
+        jQuery('.dados').attr('style', 'background-color:#fff;min-height: 25px;width: 24%;position: absolute;z-index: 9;top: 100%;');  
         jQuery('.dados ul').html('<li style="border-bottom: 1px solid #ddd;padding: 5px 12px 5px 12px;font-size: 13px;font-family: &quot;Trebuchet MS&quot;, sans-serif;cursor:pointer;list-style:none;"><img src="https://media.tenor.com/images/a742721ea2075bc3956a2ff62c9bfeef/tenor.gif" style="height: 10px;margin-right: 3px;"> Aguarde, buscando resultados...</li>');
 
         console.log(destino);
@@ -349,24 +350,19 @@ function pesquisar_destinos_ehtl(){
 
                     console.log(codigo_pesquisar+' ++++ '+valor_pesquisado);
                     if (codigo_pesquisar.indexOf(valor_pesquisado) != -1) {
-						if(i < 3){
+						if(i < 6){
 							contador = contador+1;
                         	retorno += "<li style='border-bottom: 1px solid #ddd;padding: 5px 12px 5px 12px;font-size: 13px;font-family: \"Trebuchet MS\", sans-serif;cursor:pointer;list-style:none;' onclick=\"selecionar_destino_ehtl('"+item.sigla+"\',\'"+item.destino+"\',\'"+item.end+"')\"  style='line-height: 20px;font-size: 14px;' id='sigla' value='"+item.destino+"'>"+item.sigla+""+item.end+"</li>";
 						}
                     } 
                 });
-				
-				if(contador < 2){
-                	jQuery('.dados').attr('style', 'background-color:#fff;min-height: 25px;width: 24%;position: absolute;margin-top: 9%;z-index: 9;');
-				}else{
-					jQuery('.dados').attr('style', 'background-color:#fff;min-height: 25px;width: 24%;position: absolute;margin-top: 15%;z-index: 9;');
-				}
+				contador_exibicao = 1;
                 jQuery(".dados ul").html(retorno);
             }
         }); 
     }else{
-		
-        jQuery('.dados').attr('style', 'background-color:#fff;min-height: 25px;width: 24%;position: absolute;margin-top: 9%;z-index: 9;');  
+		contador_exibicao = 0;
+        jQuery('.dados').attr('style', 'background-color:#fff;min-height: 25px;width: 24%;position: absolute;z-index: 9;top: 100%;');  
         jQuery('.dados ul').html('<li style="border-bottom: 1px solid #ddd;padding: 5px 12px 5px 12px;font-size: 13px;font-family: &quot;Trebuchet MS&quot;, sans-serif;cursor:pointer;list-style:none;">Digite pelo menos 3 letras.</li>');
     }
 }
@@ -625,7 +621,7 @@ jQuery(".jet-listing-grid__items").html('');
                         }
                     } 
 
-                    jQuery(".jet-listing-grid__items").append('<div id="span_pages" style="width: 30%;margin: 17px auto;">'+span+'</div>'); 
+                    jQuery(".jet-listing-grid__items").append('<div id="span_pages" style="width: 30%;margin: 17px auto;text-align:center">'+span+'</div>'); 
 
                     jQuery('.jet-listing-grid').attr('style', '');
                     jQuery('.div_loader').attr('style', 'display:none');  
@@ -693,7 +689,7 @@ function search_pagination_ehtl(page, id, totalpages){
                             span += "";
                         }
                     } 
-                    jQuery(".jet-listing-grid__items").append('<div id="span_pages" style="width: 30%;margin: 17px auto;">'+span+'</div>'); 
+                    jQuery(".jet-listing-grid__items").append('<div id="span_pages" style="width: 30%;margin: 17px auto;text-align:center">'+span+'</div>'); 
 
                     goToByScroll('scroll');
         }
@@ -757,7 +753,7 @@ function search_pagination_ehtl_minus(page, id, totalpages){
                             span += "";
                         }
                     } 
-                    jQuery(".jet-listing-grid__items").append('<div id="span_pages" style="width: 30%;margin: 17px auto;">'+span+'</div>'); 
+                    jQuery(".jet-listing-grid__items").append('<div id="span_pages" style="width: 30%;margin: 17px auto;text-align:center">'+span+'</div>'); 
 
                     goToByScroll('scroll');
         }

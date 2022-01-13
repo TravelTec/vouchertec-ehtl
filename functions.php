@@ -14,7 +14,7 @@ GitHub Plugin URI: https://github.com/TravelTec/bookinghotels
 
 Description: Voucher Tec - Integração de hotéis E-htl é um plugin desenvolvido para agências e operadoras de turismo que precisam tratar diárias de hospedagem de fornecedores, com integração ao fornecedor E-htl.
 
-Version: 1.1.1
+Version: 1.1.2
 
 Author: Travel Tec
 
@@ -149,7 +149,7 @@ function enqueue_form_ehtl() {
 
     wp_enqueue_script( 
         'ehtl-ajax-script',
-        plugin_dir_url( __FILE__ ) . 'includes/assets/js/form-ajax-script.js',
+        plugin_dir_url( __FILE__ ) . 'includes/assets/js/form-ajax-script.js?v=1.2',
         array( 'jquery' ),
         false,
         true
